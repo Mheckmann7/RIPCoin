@@ -1,5 +1,6 @@
 const TokenSale = artifacts.require("RipTokenSale");
 const Token = artifacts.require("RipToken");
+const KycContract = artifacts.require("KycContract");
 require("dotenv").config({ path: "../.env" });
 
 chai = require("./setupchai.js");
