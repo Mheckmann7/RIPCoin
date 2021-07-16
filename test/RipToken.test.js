@@ -1,14 +1,8 @@
 const Token = artifacts.require("RipToken");
 require("dotenv").config({ path: "../.env" });
 
-var chai = require("chai");
+chai = require("./setupchai.js");
 const BN = web3.utils.BN;
-const chaiBN = require("chai-bn")(BN);
-chai.use(chaiBN);
-
-var chaiAsPromised = require("chai-as-promised");
-chai.use(chaiAsPromised);
-
 const expect = chai.expect;
 
 contract("Token Test", async (accounts) => {
