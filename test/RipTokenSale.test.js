@@ -25,6 +25,11 @@ contract("Token Test", async (accounts) => {
         let instance = await Token.deployed();
         let saleInstance = await TokenSale.deployed();
         let balanceBefore = await instance.balanceOf.call(receiver);
+        await expect(saleInstance.sendTransaction({from: receiver, value: web3.utils.toWei("1", "wei")})).to.be.rejected;
+        await expect(balanceBefore).to.be.bignumber.equal(await instance.balanceOf.call(receiver));
+    
+        let kycInstance = await KycContract.deployed();
+        await kycInstance.setKycCompleted(receiver);
         await expect(saleInstance.sendTransaction({from: receiver, value: web3.utils.toWei("1", "wei")})).to.be.fulfilled;
         return expect(balanceBefore + 1).to.be.bignumber.equal(await instance.balanceOf.call(receiver));
     })
